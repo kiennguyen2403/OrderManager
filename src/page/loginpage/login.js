@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./login.scss";
 
 export function TextInput(props) {
-  const { type, label, style, id } = props;
+  const { type, label, style, id,setText } = props;
   const [isFocused, setFocused] = useState(false);
   const [value, setValue] = useState("");
   let inputClass = "fluid-input";
@@ -14,7 +14,7 @@ export function TextInput(props) {
   } else if (value !== "") {
     inputClass += " fluid-input--open";
   }
-  console.log("something");
+
   const Focusfield = () => {
     setFocused(!isFocused);
   };
@@ -28,7 +28,7 @@ export function TextInput(props) {
           id={id}
           onFocus={Focusfield}
           onBlur={Focusfield}
-          onChange={setValue}
+          onChange={(e)=>{setValue(e.target.value); setText(e.target.value); console.log(value);}}
           autoComplete="off"
         />
         <label className="fluid-input-label" id={id}>
@@ -59,27 +59,28 @@ function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const dataSubmit = () => {
-  console.log("password")
-    axios
-      .post("http://localhost:3001/login", {
-        username,
-        passwordHash:password,
-      })
-      .then((response) => {
 
-   
+
+  const dataSubmit = () => {
+    const account = {
+      username: username,
+      passwordHash:password
+    }
+    axios
+      .post("http://localhost:3001/login", account)
+      .then((response) => {
+        navigate("/order");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.message)
       });
-      navigate("/order");
+      
   };
   return (
     <div className="login-container">
       <div className="title">Login</div>
-      <TextInput type="text" label="name" id="name" style={style} />
-      <TextInput type="password" label="password" id="password" style={style} />
+      <TextInput type="text" label="name" id="name" style={style} setText={setUsername}/>
+      <TextInput type="password" label="password" id="password" style={style} setText={setPassword} />
       <Button
         buttonText="log in"
         buttonClass="login-button"

@@ -5,19 +5,20 @@ import { DataGrid,GridToolbar } from '@mui/x-data-grid';
 import DeleteModal from '../component/deletemodal';
 import InsertModal from '../component/insertmodal';
 import UpdateModal from '../component/updatemodal';
+import axios from 'axios';
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
+    { field: 'firstname', headerName: 'First name', width: 130 },
+    { field: 'lastname', headerName: 'Last name', width: 130 },
     {
-      field: 'fullName',
+      field: 'fullname',
       headerName: 'Full name',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
       width: 160,
       valueGetter: (params) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+        `${params.row.firstname || ''} ${params.row.lastname || ''}`,
     },
     {
       field: 'phone',
@@ -37,6 +38,7 @@ const columns = [
   ];
 export default function Member(state) {
     const [modal,setModal]=useState(null);
+    const [tableData,setData] = useState([])
     const renderModel = () =>
     {
      switch(modal)
@@ -57,7 +59,14 @@ export default function Member(state) {
         break;
      }
     }
-    useEffect(()=>{},[modal])
+    useEffect(()=>{
+      axios.get("http://localhost:3001/member").then((response) =>{
+      response.data.forEach((item)=>{
+        rows.push(item)
+      })
+      setData(rows)
+      }).catch((error) =>{})},[])
+
     return (
         <div>
             <Header/>
@@ -68,7 +77,7 @@ export default function Member(state) {
             <Toolbar setModal={setModal}/>
             <div style={{ height: 625, width: '100%' }}>
               <DataGrid 
-                rows={rows}
+                rows={tableData}
                 columns={columns}
                 pageSize={10}
                 rowsPerPageOptions={[5]}

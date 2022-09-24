@@ -5,11 +5,13 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import DeleteModal from '../component/deletemodal';
 import InsertModal from '../component/insertmodal';
 import UpdateModal from '../component/updatemodal';
+import axios from 'axios';
 
 
 
 export default function Order () {
   const [modal,setModal]=useState(null);
+  const [tableData,setData] = useState([])
   const renderModel = () =>
   {
    switch(modal)
@@ -63,8 +65,19 @@ const columns = [
 ];
 
 const rows = [
-  
+ 
 ];
+
+useEffect(() =>{
+axios.get("http://localhost:3001/order").then((response) =>{
+  response.data.forEach((item) =>{
+    rows.push(item)
+    setData(rows)
+})
+}).catch((error) =>{})
+},[])
+
+console.log(rows)
 return (
     <div> 
         <Header/>
@@ -72,7 +85,7 @@ return (
         <Toolbar setModal={setModal}/>
         <div style={{ height: 625, width: '100%' }}>
             <DataGrid 
-              rows={rows}
+              rows={tableData}
               columns={columns}
               pageSize={10}
               rowsPerPageOptions={[5]}

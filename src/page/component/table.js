@@ -1,10 +1,10 @@
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import {React,useState,useEffect} from 'react';
+import {React,useEffect} from 'react';
 export default function Table(props){
     const {rows,columns} = props;
     useEffect(() =>{
-        
-    },[columns])
+        console.log(rows)
+    },[columns,rows])
     return (
         <div style={{ height: 625, width: '100%' }}>
         <DataGrid 
