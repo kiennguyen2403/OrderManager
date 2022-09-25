@@ -1,0 +1,159 @@
+.App {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#navigationBar{
+  background-color: transparent;
+  height: 70px;
+  width:100%;
+  border-bottom: 0.5px solid rgb(191, 191, 191);
+}
+/*NavigationBar*/
+a{
+  text-decoration: none;
+  color: black;
+}
+.page{
+  display: inline-block;
+  position: relative;
+}
+.page:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 0.5px;
+  bottom: 0;
+  left: 0;
+  background-color: grey;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.page:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+#navigationBar ul{
+  margin-top:25px;
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#logo{
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 20px;
+}
+#navigationBar img{
+  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.navItems{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#selection li
+{
+  margin-right:30px;
+}
+
+/*orderPage*/
+#orderPage{
+  width:100%;
+  display: flex;
+}
+
+
+/*toolbar*/
+
+#toolBar{
+  display:flex;
+  flex-direction: column;
+  width:20%;
+  justify-content:left;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.tools{
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+
+/*modal*/
+
+.modal{
+  width:70%;
+  height:80%;
+  top:10%;
+  left:20%;
+  position: absolute;
+  z-index: 999999999999999999;
+  background-color:white;
+  align-items: center;
+  text-align:center;
+  border-radius:12px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#closeButton{
+position: absolute;
+top:1%;
+left:1%;
+
+}
+
+#textFieldInput{
+  display : flex;
+  flex-direction: column;
+}
+
+#executeButton{
+  margin-top: 20px;
+}
