@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const orderSchema = new mongoose.Schema({
-  id:{
-    type: String,
-    required: true,
-    unique: true
-  },
   phone: {
     type: String,
     required: true,
@@ -18,6 +13,10 @@ const orderSchema = new mongoose.Schema({
   },
   address:{
     type: String,
+    required: true,
+  },
+  time:{
+    type: Date,
     required: true,
   }
 });

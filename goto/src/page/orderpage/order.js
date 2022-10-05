@@ -5,7 +5,9 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import DeleteModal from '../component/deletemodal';
 import InsertModal from '../component/insertmodal';
 import UpdateModal from '../component/updatemodal';
+import SearchAppBar from '../component/searchbar';
 import axios from 'axios';
+
 
 
 
@@ -32,15 +34,11 @@ export default function Order () {
    }
   }
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'id', headerName: 'ID', width: 270 },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
+    field: 'phone',
+    headerName: 'Phone',
     width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
   { 
     field:'address',
@@ -55,13 +53,9 @@ const columns = [
   { 
     field:'time',
     headerName: 'Time',
-    width:120,
+    width:320,
   },
-  { 
-    field:'note',
-    headerName: 'Note',
-    width:200,
-  }
+
 ];
 
 const rows = [
@@ -77,7 +71,24 @@ axios.get("http://localhost:3001/order").then((response) =>{
 }).catch((error) =>{})
 },[])
 
-console.log(rows)
+useEffect(() =>{
+  axios.get("http://localhost:3001/order").then((response) =>{
+    response.data.forEach((item) =>{
+      rows.push(item)
+      setData(rows)
+  })
+  }).catch((error) =>{})
+  },[modal])
+
+  const Tabletoolbar =  () =>{
+    return (
+      <div style={{display: 'flex',marginTop: '10px'}}>
+        <GridToolbar/>
+        <SearchAppBar tableData= {tableData} setdata={setData}/>
+      </div>
+  
+    )
+  }
 return (
     <div> 
         <Header/>
@@ -90,7 +101,7 @@ return (
               pageSize={10}
               rowsPerPageOptions={[5]}
               checkboxSelection
-              components={{ Toolbar: GridToolbar }}
+              components={{ Toolbar: Tabletoolbar }}
             />
             </div>
         </div>

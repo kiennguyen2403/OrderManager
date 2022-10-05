@@ -5,10 +5,14 @@ import { DataGrid,GridToolbar } from '@mui/x-data-grid';
 import DeleteModal from '../component/deletemodal';
 import InsertModal from '../component/insertmodal';
 import UpdateModal from '../component/updatemodal';
+import SearchAppBar from '../component/searchbar';
 import axios from 'axios';
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+
+
+export default function Member(state) {
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 270 },
     { field: 'firstname', headerName: 'First name', width: 130 },
     { field: 'lastname', headerName: 'Last name', width: 130 },
     {
@@ -29,14 +33,13 @@ const columns = [
     { 
       field:'address',
       headerName:"Address",
-      width:500
+      width:300
     }
   ];
   
   const rows = [
     
   ];
-export default function Member(state) {
     const [modal,setModal]=useState(null);
     const [tableData,setData] = useState([])
     const renderModel = () =>
@@ -63,9 +66,30 @@ export default function Member(state) {
       axios.get("http://localhost:3001/member").then((response) =>{
       response.data.forEach((item)=>{
         rows.push(item)
+        setData(rows)
       })
-      setData(rows)
+      
       }).catch((error) =>{})},[])
+
+      useEffect(()=>{
+        axios.get("http://localhost:3001/member").then((response) =>{
+        response.data.forEach((item)=>{
+          rows.push(item)
+          setData(rows)
+        })
+       
+        }).catch((error) =>{})},[modal])
+
+
+        const Tabletoolbar =  () =>{
+          return (
+            <div style={{display: 'flex',marginTop: '10px'}}>
+              <GridToolbar/>
+              <SearchAppBar/>
+            </div>
+        
+          )
+        }
 
     return (
         <div>
@@ -82,7 +106,7 @@ export default function Member(state) {
                 pageSize={10}
                 rowsPerPageOptions={[5]}
                 checkboxSelection
-                components={{ Toolbar: GridToolbar  }}
+                components={{ Toolbar: Tabletoolbar  }}
               />
             </div>
         </div>

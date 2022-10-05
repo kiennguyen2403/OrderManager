@@ -25,9 +25,8 @@ router.post('/', async function (req, res, next) {
   var newMember = new Member({firstname:firstname, lastname:lastname,phone:phone, address:address});
   await newMember.save()
   res.sendStatus(200)
-
-  
 })
+
 router.delete('/:id', async function(req, res, next) {
   await  Member.findOneAndDelete(req.params.id)
   res.status(204).end();

@@ -37,7 +37,7 @@ export default function InsertModal(props) {
 
     const addMember = async (firstName,lastName,phone,address) => {
         console.log(firstName,lastName, phone,address)
-        const newMember = {"firstName":firstName,"lastName":lastName, "phone":phone, "address":address};
+        const newMember = {"firstname":firstName,"lastname":lastName, "phone":phone, "address":address};
         axios.post("http://localhost:3001/member",newMember).then((response) =>{
             alert("Update success")
             setVisible(false); setModal(null);

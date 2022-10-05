@@ -19,9 +19,9 @@ router.post('/', async function (req, res) {
   const phone = req.body.phone
   const order = req.body.order
   const address = req.body.address
-  const id = mongoose.Types.ObjectId
+  const time = new Date()
   if (phone != undefined && order != undefined && address != undefined){
-  var newOrder = new Order({id: id, phone: phone, address: address, order:order});
+  var newOrder = new Order({phone: phone, address: address, order:order,time: time});
   await newOrder.save()
   res.sendStatus(200)
   }
@@ -33,10 +33,12 @@ router.post('/', async function (req, res) {
 
 
 router.delete('/:id', async function(req, res, next) {
-  await Order.findOneAndDelete(rep.params.id);
+  await Order.findOneAndDelete(req.params.id);
+  res.status(204).end();
 });
 
 router.put('/:id', async function (req, res, next) {
-  await Order.findOneAndUpdate(rep.params.id,req.body.json());
+  await Order.findOneAndUpdate(req.params.id,req.body.json());
+  res.status(204).end();
 })
 module.exports = router;
