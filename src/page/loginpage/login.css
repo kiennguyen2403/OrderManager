@@ -34,7 +34,7 @@ canvas {
   list-style: none;
   position: relative;
 }
-
+/* comment */
 .html, body {
   background-color: #FAFAFA;
   margin: 0;
@@ -212,10 +212,15 @@ canvas {
   font-weight: 400;
   text-transform: capitalize;
   pointer-events: none;
-  -webkit-transition: font-size 0.2s 0.15s ease-in-out, -webkit-transform 0.2s ease-in-out;
-  transition: font-size 0.2s 0.15s ease-in-out, -webkit-transform 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out, font-size 0.2s 0.15s ease-in-out;
-  transition: transform 0.2s ease-in-out, font-size 0.2s 0.15s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  -webkit-transition: font-size 0.2s 0.15s ease-in-out,
+ -webkit-transform 0.2s ease-in-out;
+  transition: font-size 0.2s 0.15s ease-in-out,
+ -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out,
+ font-size 0.2s 0.15s ease-in-out;
+  transition: transform 0.2s ease-in-out,
+ font-size 0.2s 0.15s ease-in-out,
+ -webkit-transform 0.2s ease-in-out;
   will-change: transform, font-size;
 }
 
