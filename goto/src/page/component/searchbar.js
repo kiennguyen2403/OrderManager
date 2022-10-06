@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {React,useState,useEffect} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -54,13 +54,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar(props) {
-  const {tableData,setData} = props;
+  const {tableData,setData,input,setInput,source} = props;
   const returnData = []
   const mergeData = []
+
+  if (source === "order")
+  {
   tableData.forEach((item) => {
     const newitem = item.phone+item.order+item.adress+item.time+item.id
     mergeData.push(newitem);
   })
+  }
+  else{
+    tableData.forEach((item) => {
+      const newitem = item.firstname+item.lastname+item.phone+item.address+item.id
+      mergeData.push(newitem);
+    })
+  }
   return (
     <div sx={{ flexGrow: 1}}>
           <Search>
@@ -70,13 +80,18 @@ export default function SearchAppBar(props) {
             <StyledInputBase
               placeholder="Search"
               inputProps={{ 'aria-label': 'search' }}
-              onChanged ={(evt)=>{
+              value={input}
+           
+              onChange ={(evt)=>{
                 mergeData.forEach((item)=>{
                   if (item.includes(evt.target.value)){
-                    console.log(item)
+                    const index = mergeData.indexOf(item)
+                    returnData.push(tableData[index])
                   }
                 })
-                
+          
+                setInput(evt.target.value)
+                setData(returnData)
               }}
             />
           </Search>

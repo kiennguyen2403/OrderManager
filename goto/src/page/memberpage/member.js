@@ -42,6 +42,8 @@ export default function Member(state) {
   ];
     const [modal,setModal]=useState(null);
     const [tableData,setData] = useState([])
+    const [onFocus,setonFocus] = useState(false)
+    const [input,setInput] = useState("")
     const renderModel = () =>
     {
      switch(modal)
@@ -85,7 +87,7 @@ export default function Member(state) {
           return (
             <div style={{display: 'flex',marginTop: '10px'}}>
               <GridToolbar/>
-              <SearchAppBar/>
+              <SearchAppBar tableData={tableData} setData={setData} input={input} setInput={setInput} source="memberh"/>
             </div>
         
           )

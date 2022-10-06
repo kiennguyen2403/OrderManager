@@ -13,6 +13,7 @@ import axios from 'axios';
 
 export default function Order () {
   const [modal,setModal]=useState(null);
+  const [input,setInput] = useState("")
   const [tableData,setData] = useState([])
   const renderModel = () =>
   {
@@ -84,9 +85,8 @@ useEffect(() =>{
     return (
       <div style={{display: 'flex',marginTop: '10px'}}>
         <GridToolbar/>
-        <SearchAppBar tableData= {tableData} setdata={setData}/>
+        <SearchAppBar tableData={tableData} setData={setData} input={input} setInput={setInput} source="order"/>
       </div>
-  
     )
   }
 return (
