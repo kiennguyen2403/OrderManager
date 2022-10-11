@@ -57,7 +57,7 @@ export default function SearchAppBar(props) {
   const {tableData,setData,input,setInput,source} = props;
   const returnData = []
   const mergeData = []
-
+  /*
   if (source === "order")
   {
   tableData.forEach((item) => {
@@ -71,6 +71,7 @@ export default function SearchAppBar(props) {
       mergeData.push(newitem);
     })
   }
+  */
   return (
     <div sx={{ flexGrow: 1}}>
           <Search>
@@ -80,18 +81,21 @@ export default function SearchAppBar(props) {
             <StyledInputBase
               placeholder="Search"
               inputProps={{ 'aria-label': 'search' }}
+          
               value={input}
-           
               onChange ={(evt)=>{
+                /*
                 mergeData.forEach((item)=>{
                   if (item.includes(evt.target.value)){
                     const index = mergeData.indexOf(item)
                     returnData.push(tableData[index])
                   }
                 })
-          
+          */
                 setInput(evt.target.value)
+                /*
                 setData(returnData)
+                */
               }}
             />
           </Search>

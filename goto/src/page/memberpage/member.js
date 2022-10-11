@@ -42,7 +42,7 @@ export default function Member(state) {
   ];
     const [modal,setModal]=useState(null);
     const [tableData,setData] = useState([])
-    const [onFocus,setonFocus] = useState(false)
+
     const [input,setInput] = useState("")
     const renderModel = () =>
     {
@@ -108,7 +108,7 @@ export default function Member(state) {
                 pageSize={10}
                 rowsPerPageOptions={[5]}
                 checkboxSelection
-                components={{ Toolbar: Tabletoolbar  }}
+                components={{ Toolbar: GridToolbar  }}
               />
             </div>
         </div>

@@ -80,7 +80,28 @@ useEffect(() =>{
   })
   }).catch((error) =>{})
   },[modal])
-
+  
+  useEffect(() =>{
+    axios.get("http://localhost:3001/order").then((response) =>{
+      response.data.forEach((item) =>{
+        rows.push(item)
+        setData(rows)
+    })
+    const mergeData = []
+    const returnData = []
+    tableData.forEach((item) => {
+      const newitem = item.phone+item.order+item.adress+item.time+item.id
+      mergeData.push(newitem);
+    })
+    mergeData.forEach((item)=>{
+      if (item.includes(input)){
+        const index = mergeData.indexOf(item)
+        returnData.push(tableData[index])
+      }
+    })
+    setData(returnData)
+    }).catch((error) =>{})
+    },[input])
   const Tabletoolbar =  () =>{
     return (
       <div style={{display: 'flex',marginTop: '10px'}}>
@@ -101,7 +122,7 @@ return (
               pageSize={10}
               rowsPerPageOptions={[5]}
               checkboxSelection
-              components={{ Toolbar: Tabletoolbar }}
+              components={{ Toolbar: GridToolbar }}
             />
             </div>
         </div>
