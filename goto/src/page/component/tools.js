@@ -7,6 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Update';
+import { Mail } from "@mui/icons-material";
 
 export default function Toolbar(props) {
     const {setModal} = props;
@@ -31,6 +32,11 @@ export default function Toolbar(props) {
             <div className = "tools toolBarSelection">
                 <Button variant="contained" color="grey"  startIcon={<ImportExportIcon color="grey"/>}>
                     <p>Export data</p>
+                </Button>
+            </div>
+            <div className = "tools toolBarSelection">
+                <Button variant="contained" color="grey"  startIcon={<Mail color="grey"/>}>
+                    <p>Weekly Notify</p>
                 </Button>
             </div>
             <div className =" tools toolBarSelection">

@@ -28,6 +28,9 @@ export default function Order () {
     case 'insert':
       return (<InsertModal functionality="order" setModal={setModal}/>);
       break;
+    case 'insert':
+      return (<InsertModal functionality="order" setModal={setModal}/>);
+      break;
     default:
       return null;
       break;
