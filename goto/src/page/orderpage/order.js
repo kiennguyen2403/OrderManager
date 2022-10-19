@@ -8,13 +8,11 @@ import UpdateModal from '../component/updatemodal';
 import SearchAppBar from '../component/searchbar';
 import axios from 'axios';
 
-
-
-
 export default function Order () {
   const [modal,setModal]=useState(null);
   const [input,setInput] = useState("")
   const [tableData,setData] = useState([])
+
   const renderModel = () =>
   {
    switch(modal)
@@ -24,9 +22,6 @@ export default function Order () {
       break;
     case 'delete':
       return (<DeleteModal functionality="order" setModal={setModal}/>);
-      break;
-    case 'insert':
-      return (<InsertModal functionality="order" setModal={setModal}/>);
       break;
     case 'insert':
       return (<InsertModal functionality="order" setModal={setModal}/>);
