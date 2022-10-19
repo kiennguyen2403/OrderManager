@@ -7,9 +7,17 @@ import AddIcon from '@mui/icons-material/Add';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Update';
+import { Mail } from "@mui/icons-material";
+import emailjs from '@emailjs/browser';
 
 export default function Toolbar(props) {
     const {setModal} = props;
+
+    const emailMe = () => {
+        emailjs.send('gotogrocery', 'template_rlw3waw', 'XXKx8eVA91JVKowQK');
+        console.log("EMAILED");
+    }
+
     return(
         <div id="toolBar">
         <FormGroup>
@@ -31,6 +39,11 @@ export default function Toolbar(props) {
             <div className = "tools toolBarSelection">
                 <Button variant="contained" color="grey"  startIcon={<ImportExportIcon color="grey"/>}>
                     <p>Export data</p>
+                </Button>
+            </div>
+            <div className = "tools toolBarSelection">
+                <Button variant="contained" color="grey"  startIcon={<Mail color="grey" onClick={()=>{emailMe()}}/>}>
+                    <p>Weekly Notify</p>
                 </Button>
             </div>
             <div className =" tools toolBarSelection">
